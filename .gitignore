@@ -28,3 +28,6 @@ package-lock.json
 
 # Optional REPL history
 .node_repl_history
+
+# Genericons demo page
+genericons/Genericons.html
