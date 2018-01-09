@@ -1,15 +1,27 @@
-# Genericons
+# Genericons Grunt
 
-Genericons are vector icons embedded in a webfont designed to be clean and simple keeping with a generic aesthetic.
+Genericons Grunt makes building your own version of [Genericons](https://github.com/Automattic/Genericons) easier by using `grunt` rather than [FontCustom](https://github.com/FontCustom/fontcustom) for builds.
 
 **But wait!** There is a newer, more modern-looking version of Genericons available, [Genericons Neue](https://github.com/Automattic/genericons-neue), which you should consider using instead.
 
 ## Usage
 
-To use it, place the `genericons` folder in your stylesheet directory and enqueue the genericons.css file. Now you can create an icon like this:
+To use it, place the `genericons` folder in your stylesheet directory and enqueue the `genericons.css` file. 
+
+Now you can render an icon in one of two ways:
+
+1. Insert a tag with appropriate CSS classes in your HTML markup, e.g.
 
 ```
-.my-icon:before {
+<i class="genericon genericon-comment"></i>
+```
+
+This will output a comment icon where the `<i>` tag is inserted.
+
+2. Use the :before psuedo-selector, e.g.
+
+```
+.my-selector:before {
 	content: '\f101';
 	font: normal 16px/1 'Genericons';
 	display: inline-block;
@@ -18,17 +30,21 @@ To use it, place the `genericons` folder in your stylesheet directory and enqueu
 }
 ```
 
-This will output a comment icon before every element with the class "my-icon". You can also use the bundled example.css if you'd rather insert the icons using HTML tags.
+This will output a comment icon before every element with the class "my-icon".
+
+For a full listing of available icons, check out [genericons.com](http://genericons.com).
 
 
 ## Building your own Genericons
 
-Genericons is built semi-automatically. SVG source files in the `source/svg` directory are processed and converted into an icon font with `grunt`. To build your own version of Genericons, simply follow these instructions:
+Genericons is built by converting the SVG files in the `svg` directory into an icon font. 
+
+To build your own version of Genericons, simply follow these instructions:
 
 ### Windows instructions
 
 1. Install [FontForge](http://fontforge.github.io/en-US/downloads/windows/) to a path without spaces, e.g. `C:\FontForgeBuilds`.
-2. Add the installation path to your system PATH variable, e.g. `C:\FontForgeBuilds\bin`.
+2. Add the FontForge installation path to your system PATH variable, e.g. `C:\FontForgeBuilds\bin`.
 3. Open a new command prompt and run the following commands:
 
 ```
@@ -36,9 +52,11 @@ npm install
 npm run build
 ```
 
-Your custom Genericons icon font will be written to the `genericons` directory.
+Your Genericons icon font will be written to the `genericons` directory.
 
-*Note:* You may encounter a build error when running `npm install`. If so, install [Visual Studio Community 2015](https://www.visualstudio.com/vs/older-downloads/) and repeat step 3.
+**Note on Windows build errors**
+
+You may encounter a build error when running `npm install`. If so, install [Visual Studio Community 2015](https://www.visualstudio.com/vs/older-downloads/) and repeat step 3.
 
 ### Mac instructions
 
@@ -94,6 +112,13 @@ Base64 encoding comes with a 25% filesize overhead compared to just loading the 
 
 ## Changelog
 
+**4.0.0**
+
+Genericons is now built with `npm` and `grunt`. This should make it easier to build your own version moving forward.
+
+The new version should act as a drop-in replacement for the old, with the exception that the .woff font is no longer included (.woff2 is included instead). Please use caution when upgrading, and be sure to read the updated [build instructions](#building-your-own-genericons).
+
+
 **3.4.1**
 
 * IE8 support restored.
@@ -101,7 +126,7 @@ Base64 encoding comes with a 25% filesize overhead compared to just loading the 
 **3.4**
 
 * Updated: Update Google Plus icon to new geometric version. This also *retires* the "alt" version, so *please be mindful if you choose to update, make sure you use the `f206` glyph, not the `f218` glyph, as it no longer exists!
-* New: Added helper rotation classes to the base CSS, thanks to geminorum. Apply `genericon-rotate-90` to rotate 90 degrees, -180, -270. Or `genericon-flip-horizontal` or -vertical. 
+* New: Added helper rotation classes to the base CSS, thanks to geminorum. Apply `genericon-rotate-90` to rotate 90 degrees, -180, -270. Or `genericon-flip-horizontal` or -vertical.
 
 *Again, it is important if you choose to update to this version, make sure you're not using `genericon-googleplus-alt` or unicode character `f218`, as that has been retired! Use `genericon-googleplus` and glyph `f206` instead!*
 
@@ -114,7 +139,6 @@ Security Hardening: Remove Genericons example.html file. Please visit genericons
 The Open Source release.
 
 You can now build your own flavors of Genericons with all the SVGs provided. 
-
 
 **3.2**
 
